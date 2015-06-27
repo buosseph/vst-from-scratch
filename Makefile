@@ -1,15 +1,17 @@
 CC 			= clang++
 CFLAGS 	= -Weverything
-LIBS 		=
+LIBS 		= # -lpng # (for gui support in the future)
+DIRS		= # -I'/VST3 SDK/pluginterfaces/vst2.x/aeffect.h' \
+					-I'/VST3 SDK/pluginterfaces/vst2.x/aeffectx.h'
 
 main :
-	$(CC) $(CFLAGS) $(LIBS) -o main main.cpp
+	$(CC) $(CFLAGS) $(DIRS) $(LIBS) -o main src/main.cpp
 
 debug : 
-	$(CC) $(CFLAGS) -g $(LIBS) -o main main.cpp
+	$(CC) $(CFLAGS) -g $(DIRS) $(LIBS) -o main src/main.cpp
 
 release : 
-	$(CC) $(CFLAGS) -O3 $(LIBS) -o main main.cpp
+	$(CC) $(CFLAGS) -O3 $(DIRS) $(LIBS) -o main src/main.cpp
 
 clean :
 	rm main
