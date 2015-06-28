@@ -1,16 +1,15 @@
 PLUGIN_NAME = plugin
-VST_SDK 		= VST3_SDK
+VST_SDK 		= sdk/VST3_SDK
 
-CXX 			= clang++
-CXXFLAGS 	= -Weverything
-SDKFLAGS	= -w -O2
-OBJS			= $(PLUGIN_NAME).o vstplugmain.o audioeffect.o audioeffectx.o
-LIBS			= -L. 
-INCLUDES 	=	-I. \
-						-I"$(VST_SDK)/pluginterfaces/vst2.x" \
-						-I"$(VST_SDK)/public.sdk/source/vst2.x" \
-						-I"$(VST_SDK)"
-
+CXX 				= clang++
+CXXFLAGS 		= -Weverything
+SDKFLAGS		= -w -O2
+OBJS				= $(PLUGIN_NAME).o vstplugmain.o audioeffect.o audioeffectx.o
+LIBS				= -L. 
+INCLUDES 		=	-I. \
+							-I"$(VST_SDK)/pluginterfaces/vst2.x" \
+							-I"$(VST_SDK)/public.sdk/source/vst2.x" \
+							-I"$(VST_SDK)"
 ENTRY 			= -e _VSTPluginMain
 						# Try -Wl,-e_VSTPluginMain if it doesn't seem to be working
 MAC_EXPORT	= -bundle -o $(PLUGIN_NAME)
@@ -75,3 +74,6 @@ audioeffectx.o: $(VST_SDK)/public.sdk/source/vst2.x/audioeffectx.cpp
 
 clean:
 	rm $(LINK_TARGET) $(OBJS)
+
+clean-objects:
+	rm $(OBJS)

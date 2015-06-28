@@ -1,3 +1,4 @@
 .DS_Store
-VST3 SDK/
+sdk/*
+sdk/!readme.md
 *.dSYM/
