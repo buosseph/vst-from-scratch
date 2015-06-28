@@ -11,8 +11,6 @@
 
 #include "audioeffectx.h"
 
-#include "public.sdk/source/vst2.x/vstplugmain.cpp"
-
 #pragma clang diagnostic pop
 
 // List all user parameters here. This is used for indexing.
