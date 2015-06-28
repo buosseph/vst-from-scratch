@@ -9,15 +9,9 @@
 #pragma clang diagnostic ignored "-Wdocumentation-unknown-command"
 #pragma clang diagnostic ignored "-Wunused-parameter"
 
-// Todo: Fix include
-// inclusions in public.sdk/source/vst2.x/ reference
-// pluginterfaces/vst2.x/, do not use correct relative
-// paths (looking for files in same directory, rather
-// than searching in parent directories)
-//
-// This is temporarily fixed by copying the files into
-// the directory, but this is not where it should be located
-#include "../VST3 SDK/public.sdk/source/vst2.x/audioeffectx.h"
+#include "audioeffectx.h"
+
+#include "public.sdk/source/vst2.x/vstplugmain.cpp"
 
 #pragma clang diagnostic pop
 
