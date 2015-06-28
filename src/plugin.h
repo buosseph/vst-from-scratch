@@ -1,22 +1,30 @@
 #ifndef PLUGIN_H
 #define PLUGIN_H
 
-#ifndef __aeffect__
-#define __aeffect__
-#include "../VST3 SDK/pluginterfaces/vst2.x/aeffect.h"
-#endif
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundef"
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wshadow"
+#pragma clang diagnostic ignored "-Wold-style-cast"
+#pragma clang diagnostic ignored "-Wdocumentation-unknown-command"
+#pragma clang diagnostic ignored "-Wunused-parameter"
 
-#ifndef __aeffectx__
-#define __aeffectx__
-#include "../VST3 SDK/pluginterfaces/vst2.x/aeffectx.h"
-#endif
-
+// Todo: Fix include
+// inclusions in public.sdk/source/vst2.x/ reference
+// pluginterfaces/vst2.x/, do not use correct relative
+// paths (looking for files in same directory, rather
+// than searching in parent directories)
+//
+// This is temporarily fixed by copying the files into
+// the directory, but this is not where it should be located
 #include "../VST3 SDK/public.sdk/source/vst2.x/audioeffectx.h"
+
+#pragma clang diagnostic pop
 
 // List all user parameters here. This is used for indexing.
 enum {
   // param1 = 0,
-  numParams
+  numParameters
 };
 
 const int numPrograms = 0;  // Set number of preset porgrams
@@ -36,6 +44,10 @@ public:
   virtual bool            getVendorString(char* text);  // identifying the vendor
   virtual VstInt32        getVendorVersion();           // Returns vendor-specific version number
 
+  virtual void  processReplacing(float** inputs, float** outputs, VstInt32 sampleFrames);
+
+  /*
+  // These are not extended from AudioEffectX 
   virtual float getParameter(VstInt32 index);
   virtual void  getParameterDisplay(VstInt32 index, char* text);
   virtual void  getParameterLabel(VstInt32 index, char* label);
@@ -44,7 +56,6 @@ public:
 
   virtual void  setParameter(VstInt32 index, float value);
   virtual void  setProgramName(char* name);
-
-  virtual void  processReplacing(float** inputs, float** outputs, VstInt32 sampleFrames);
+  */
 };
 #endif

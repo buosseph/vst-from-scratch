@@ -1,17 +1,21 @@
 CC 			= clang++
 CFLAGS 	= -Weverything
 LIBS 		= # -lpng # (for gui support in the future)
-DIRS		= # -I'/VST3 SDK/pluginterfaces/vst2.x/aeffect.h' \
-					-I'/VST3 SDK/pluginterfaces/vst2.x/aeffectx.h'
+VST_DSK	= -I"VST3 SDK/pluginterfaces/vst2.x/affect.h" \
+					-I"VST3 SDK/pluginterfaces/vst2.x/affectx.h" \
+					-I"VST3 SDK/public.sdk/source/vst2.x/audioeffectx.h"
+EXPORT	= 
+ENTRY 	= -e createEffectInstance
+PLUGIN_NAME = my_plugin
 
-main :
-	$(CC) $(CFLAGS) $(DIRS) $(LIBS) -o main src/main.cpp
+plugin :
+	$(CC) $(CFLAGS) $(VST_DSK) $(LIBS) -o $(PLUGIN_NAME) $(ENTRY) src/plugin.cpp
 
 debug : 
-	$(CC) $(CFLAGS) -g $(DIRS) $(LIBS) -o main src/main.cpp
+	$(CC) $(CFLAGS) -O0 -g $(VST_DSK) $(LIBS) -o $(PLUGIN_NAME) $(ENTRY) src/plugin.cpp
 
 release : 
-	$(CC) $(CFLAGS) -O3 $(DIRS) $(LIBS) -o main src/main.cpp
+	$(CC) $(CFLAGS) -O3 $(VST_DSK) $(LIBS) -o $(PLUGIN_NAME) $(ENTRY) src/plugin.cpp
 
 clean :
-	rm main
+	rm plugin
