@@ -25,7 +25,7 @@ function create_plist {
   <key>CFBundlePackageType</key>
   <string>BNDL</string>
   <key>CFBundleDevelopmentRegion</key>
-  <string>en</string>
+  <string>English</string>
   <key>CFBundleSignature</key>
   <string>????</string>
   <key>DTCompiler</key>

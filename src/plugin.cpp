@@ -1,6 +1,5 @@
 #include "plugin.h"
 
-// Replaces main()
 AudioEffect* createEffectInstance(audioMasterCallback audioMaster) {
   return new VstPlugin(audioMaster);
 }
